@@ -31,6 +31,27 @@ def main():
         if "already exists" not in str(e):
             raise
 
+    # Using pandas, read the passwords and the user .csvs
+    df_passwords = pd.read_csv(PASSWORDS_CSV)
+    df_users = pd.read_csv(USERS_CSV)
+
+    # Remove the whitespace in front of the column headers
+    df_passwords.columns = df_passwords.columns.str.strip()
+    df_users.columns = df_users.columns.str.strip()
+
+    # Remove the whitespace in from of the column values
+    df_passwords = df_passwords.map(lambda x: x.strip() if isinstance(x, str) else x)
+    df_users = df_users.map(lambda x: x.strip() if isinstance(x, str) else x)
+
+    print("Passwords Columns:", df_passwords.columns.tolist())
+    print("Users Columns:", df_users.columns.tolist())
+
+    # Combine the data on the Username column
+    combined_data = pd.merge(df_passwords, df_users, on="Username")
+
+    print(combined_data.to_dict(orient='records'))
+
+
 
     conn.commit()
     conn.close()
