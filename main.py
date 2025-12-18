@@ -29,7 +29,7 @@ def main():
     EMAIL_SUFFIX = sys.argv[5]
     ACCOUNT_PREFIX = sys.argv[6]
 
-    print("EMAIL_SUFFIX =", EMAIL_SUFFIX[0:1])
+    # print("EMAIL_SUFFIX =", EMAIL_SUFFIX[0:1])
 
     if(EMAIL_SUFFIX != EMAIL_SUFFIX[0:1]):
         EMAIL_SUFFIX = "@" + EMAIL_SUFFIX
