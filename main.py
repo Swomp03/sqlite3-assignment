@@ -67,7 +67,7 @@ def main():
     df_passwords.columns = df_passwords.columns.str.strip()
     df_users.columns = df_users.columns.str.strip()
 
-    # Remove the whitespace in from of the column values
+    # Remove the whitespace in front of the column values
     df_passwords = df_passwords.map(lambda x: x.strip() if isinstance(x, str) else x)
     df_users = df_users.map(lambda x: x.strip() if isinstance(x, str) else x)
 
@@ -134,6 +134,7 @@ def main():
     WHERE username = ?
     """
 
+    # For loop, update the password for each user
     for i, row in df_passwords.iterrows():
         try:
             params = (
